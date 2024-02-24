@@ -1,0 +1,6 @@
+@InvoiceAutoScan.Web_HostAddress = http://localhost:5219
+
+GET {{InvoiceAutoScan.Web_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

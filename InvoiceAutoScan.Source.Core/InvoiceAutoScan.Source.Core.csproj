@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Connections\**" />
+    <EmbeddedResource Remove="Connections\**" />
+    <None Remove="Connections\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MassTransit" Version="8.1.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\InvoiceAutoScan.Common\InvoiceAutoScan.Common.csproj" />
+    <ProjectReference Include="..\InvoiceAutoScan.Core.Contracts\InvoiceAutoScan.Core.Contracts.csproj" />
+    <ProjectReference Include="..\InvoiceAutoScan.Source.Core.Contracts\InvoiceAutoScan.Source.Core.Contracts.csproj" />
+    <ProjectReference Include="..\InvoiceAutoScan.Source.Gmail.Contracts\InvoiceAutoScan.Source.Gmail.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

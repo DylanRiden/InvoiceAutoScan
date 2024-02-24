@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Identity" Version="1.10.4" />
+    <PackageReference Include="Google.Apis.Auth" Version="1.66.0" />
+    <PackageReference Include="Google.Apis.Auth.AspNetCore3" Version="1.66.0" />
+    <PackageReference Include="Google.Apis.Gmail.v1" Version="1.66.0.3287" />
+    <PackageReference Include="Microsoft.Azure.AppConfiguration.AspNetCore" Version="7.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\InvoiceAutoScan.Common.Data\InvoiceAutoScan.Common.Data.csproj" />
+    <ProjectReference Include="..\InvoiceAutoScan.Core.Contracts\InvoiceAutoScan.Core.Contracts.csproj" />
+    <ProjectReference Include="..\InvoiceAutoScan.Core.Infrastructure\InvoiceAutoScan.Core.Infrastructure.csproj" />
+    <ProjectReference Include="..\InvoiceAutoScan.Source.Core.Contracts\InvoiceAutoScan.Source.Core.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>
