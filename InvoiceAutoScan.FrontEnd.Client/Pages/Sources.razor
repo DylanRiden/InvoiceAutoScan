@@ -1,0 +1,83 @@
+﻿@page "/sources"
+@using Core.Contracts.SourceSystems;
+
+<PageTitle>InvoiceAutoScan - Sources</PageTitle>
+
+<div style="width:100%; height:100%">
+    <FluentStack Style="width100%;height:100%" Orientation="Orientation.Vertical" VerticalAlignment="VerticalAlignment.Top" HorizontalAlignment="HorizontalAlignment.Center">
+
+        <FluentStack>
+
+            <h1>Sources</h1>
+            
+        </FluentStack>
+
+        <FluentStack Style="width:100%" HorizontalAlignment="HorizontalAlignment.Center" VerticalAlignment="VerticalAlignment.Center">
+            
+            <p role="status">Sources Used: <FluentBadge Appearance="Appearance.Neutral">@totalSources</FluentBadge></p>
+            
+            <FluentSpacer />
+
+            <FluentButton IconEnd="new Icons.Regular.Size20.Add()" Style="font-size:20px" Appearance="Appearance.Accent">
+                Add Source
+            </FluentButton>
+        
+        </FluentStack>
+
+
+        <FluentDataGrid Id="somegrid" Style="width:100%" TGridItem="SourceSystemResult" Items="this.data.Data.AsQueryable()">
+
+            <PropertyColumn Title="Source Name" Align="Align.Start" Property="@(e => e.DisplayName)" />
+            
+                <TemplateColumn Title="Source Type" Align="Align.Center" >
+                <FluentIcon Value="new Icons.Filled.Size20.Calendar()" />
+            </TemplateColumn>
+
+            <PropertyColumn Title="Created Date" Align="Align.Center" Property="@(e => e.CreatedDate)" />
+            <PropertyColumn Title="Last Sync" Align="Align.Center" Property="@(e => e.ModifiedDate)" />
+
+            <TemplateColumn Align="Align.End">
+                <FluentIcon  Value="new Icons.Regular.Size20.Edit()" OnClick="async e => await OnEdit(context)" />
+                <FluentIcon Value="new Icons.Regular.Size20.Delete()" OnClick="async e => await OnEdit(context)" />
+            </TemplateColumn>
+
+        </FluentDataGrid>
+
+
+    </FluentStack>
+</div>
+
+
+@code {
+    private int totalSources = 0;
+
+    private const string SourceType = "Gmail";
+
+    private ListSourceSystemsResult data = new()
+        {
+            Data = new()
+                {
+                    new()
+                    {
+                        CreatedDate = DateTime.UtcNow,
+                        DisplayName = "this is a source",
+                        Id = Guid.NewGuid(),
+                        ModifiedDate = DateTime.UtcNow.AddHours(6),
+                        SystemName = "GHKJDSFGD"
+                    }
+                }
+        };
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task OnEdit(SourceSystemResult entity)
+    {
+        Console.WriteLine(entity.DisplayName + " - MODIFIFED");
+    }
+
+
+}
