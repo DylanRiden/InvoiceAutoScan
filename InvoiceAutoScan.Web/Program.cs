@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 var builder = WebApplication.CreateBuilder(args);
 
 //builder.Configuration.AddIASAppConfiguration();
+//TODO: Fix all this shit
 builder.Configuration.AddAzureAppConfiguration(options =>
 {
     options.Connect("Endpoint=https://ias-dev-uksouth.azconfig.io;Id=fGZx;Secret=4ioYkWcOYgSyiwOBABSJaJiHX75fk1wjDk8Dm8fr1a4=");
@@ -14,6 +15,13 @@ builder.Configuration.AddAzureAppConfiguration(options =>
 
 #if DEBUG
 Console.WriteLine(builder.Configuration.GetDebugView());
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Local-Dev",
+        policy => policy.WithOrigins("https://localhost:7148")
+        .AllowAnyHeader()
+        .AllowAnyMethod());
+});
 builder.Configuration.GetSection("Google");
 #endif
 
@@ -41,5 +49,6 @@ app.UseAuthorization();
 app.UseAuthentication();
 
 app.MapControllers();
+app.UseCors("Local-Dev");
 
 app.Run();

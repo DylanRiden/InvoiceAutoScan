@@ -1,5 +1,4 @@
-﻿using InvoiceAutoScan.Core.Contracts.SourceSystems;
-using InvoiceAutoScan.Source.Core.Contracts.Connections.SourceConnection;
+﻿using InvoiceAutoScan.Source.Core.Contracts.Connections.SourceConnection;
 using InvoiceAutoScan.Source.Core.Contracts.Connections.Trigger;
 using MassTransit;
 using Google.Apis.Auth.AspNetCore3;
@@ -19,6 +18,7 @@ using MassTransit.Configuration;
 using InvoiceAutoScan.Common.Source.Options;
 using Microsoft.Extensions.Options;
 using static MassTransit.ValidationResultExtensions;
+using InvoiceAutoScan.Core.Contracts.SourceSystems.Result;
 
 namespace InvoiceAutoScan.Gateway.Controllers
 {

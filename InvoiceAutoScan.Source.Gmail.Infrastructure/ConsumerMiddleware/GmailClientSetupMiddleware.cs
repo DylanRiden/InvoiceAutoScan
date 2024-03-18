@@ -4,7 +4,6 @@ using Google.Apis.Auth.OAuth2;
 using Google.Apis.Gmail.v1;
 using Google.Apis.Services;
 using InvoiceAutoScan.Common.Source.Options;
-using InvoiceAutoScan.Core.Contracts.SourceSystems;
 using InvoiceAutoScan.Gmail.Common.DependencyInjection;
 using InvoiceAutoScan.Source.Core.Contracts.Connections.SourceConnection;
 using InvoiceAutoScan.Source.Gmail.Contracts.Sync;
@@ -19,6 +18,8 @@ using Microsoft.Extensions.Options;
 using Google.Apis.Logging;
 using Microsoft.Extensions.Logging;
 using InvoiceAutoScan.Source.Gmail.Contracts;
+using InvoiceAutoScan.Core.Contracts.SourceSystems.Get;
+using InvoiceAutoScan.Core.Contracts.SourceSystems.Result;
 
 namespace InvoiceAutoScan.Source.Gmail.Infrastructure.ConsumerMiddleware
 {

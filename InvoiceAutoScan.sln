@@ -59,10 +59,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvoiceAutoScan.Gmail.Commo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Target", "Target", "{ED2E844E-636C-4ED6-B592-818AA1A769C5}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Audit", "Audit", "{F6DF77D3-4853-4215-922D-7892A7FF68AB}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Auth", "Auth", "{8DFA20C3-6766-44D7-9578-AE4CA54CA669}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvoiceAutoScan.DetectionEngine.Core", "InvoiceAutoScan.DetectionEngine.Core\InvoiceAutoScan.DetectionEngine.Core.csproj", "{6A2F3333-20D9-4A40-B470-B515C7DBE9E0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvoiceAutoScan.DetectionEngine.Contracts", "InvoiceAutoScan.DetectionEngine.Contracts\InvoiceAutoScan.DetectionEngine.Contracts.csproj", "{ABB748E5-9859-4CB0-BC73-85E112F80AFC}"
@@ -95,9 +91,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvoiceAutoScan.FrontEnd.Cl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvoiceAutoScan.FrontEnd.ApiClient", "InvoiceAutoScan.FrontEnd.ApiClient\InvoiceAutoScan.FrontEnd.ApiClient.csproj", "{B08509EE-C1B6-43BC-B564-86778B35A67E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceAutoScan.FrontEnd.Abstractions", "InvoiceAutoScan.FrontEnd.Abstractions\InvoiceAutoScan.FrontEnd.Abstractions.csproj", "{B5D955DB-7AAD-4DED-9D6E-2B15613577A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvoiceAutoScan.FrontEnd.Abstractions", "InvoiceAutoScan.FrontEnd.Abstractions\InvoiceAutoScan.FrontEnd.Abstractions.csproj", "{B5D955DB-7AAD-4DED-9D6E-2B15613577A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceAutoScan.FrontEnd.Faker", "InvoiceAutoScan.FrontEnd.Faker\InvoiceAutoScan.FrontEnd.Faker.csproj", "{54A28A72-149A-4A81-81F2-9B02BC13CE2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvoiceAutoScan.FrontEnd.Faker", "InvoiceAutoScan.FrontEnd.Faker\InvoiceAutoScan.FrontEnd.Faker.csproj", "{54A28A72-149A-4A81-81F2-9B02BC13CE2F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvoiceAutoScan.Gateway.Management", "InvoiceAutoScan.Gateway.Management\InvoiceAutoScan.Gateway.Management.csproj", "{DD8408C2-803F-4D5D-AE77-F93D667778CF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvoiceAutoScan.FrontEnd.Infrastructure", "InvoiceAutoScan.FrontEnd.Infrastructure\InvoiceAutoScan.FrontEnd.Infrastructure.csproj", "{21592383-5322-47E1-9FEF-00D61D732842}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -233,6 +233,14 @@ Global
 		{54A28A72-149A-4A81-81F2-9B02BC13CE2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54A28A72-149A-4A81-81F2-9B02BC13CE2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54A28A72-149A-4A81-81F2-9B02BC13CE2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD8408C2-803F-4D5D-AE77-F93D667778CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD8408C2-803F-4D5D-AE77-F93D667778CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD8408C2-803F-4D5D-AE77-F93D667778CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD8408C2-803F-4D5D-AE77-F93D667778CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21592383-5322-47E1-9FEF-00D61D732842}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21592383-5322-47E1-9FEF-00D61D732842}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21592383-5322-47E1-9FEF-00D61D732842}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21592383-5322-47E1-9FEF-00D61D732842}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -276,6 +284,8 @@ Global
 		{B08509EE-C1B6-43BC-B564-86778B35A67E} = {05E54F51-8E30-4B35-95E5-E511A54FA84A}
 		{B5D955DB-7AAD-4DED-9D6E-2B15613577A6} = {05E54F51-8E30-4B35-95E5-E511A54FA84A}
 		{54A28A72-149A-4A81-81F2-9B02BC13CE2F} = {05E54F51-8E30-4B35-95E5-E511A54FA84A}
+		{DD8408C2-803F-4D5D-AE77-F93D667778CF} = {52CEA9B3-7897-4B94-90AE-BBC3CC03970F}
+		{21592383-5322-47E1-9FEF-00D61D732842} = {05E54F51-8E30-4B35-95E5-E511A54FA84A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E7D37A68-1346-4974-BF91-347F82B54850}

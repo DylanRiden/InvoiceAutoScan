@@ -1,5 +1,5 @@
 ﻿using Google.Apis.Gmail.v1;
-using InvoiceAutoScan.Core.Contracts.SourceSystems;
+using InvoiceAutoScan.Core.Contracts.SourceSystems.Result;
 using System;
 using System.Collections.Generic;
 using System.Linq;

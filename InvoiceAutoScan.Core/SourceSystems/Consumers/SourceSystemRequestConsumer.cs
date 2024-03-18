@@ -1,14 +1,16 @@
-﻿using InvoiceAutoScan.Core.Contracts.SourceSystems;
-using InvoiceAutoScan.Core.SourceSystems.Data;
+﻿using InvoiceAutoScan.Common.Base.DataRepositories;
+using InvoiceAutoScan.Core.Contracts.SourceSystems;
+using InvoiceAutoScan.Core.Contracts.SourceSystems.Get;
+using InvoiceAutoScan.Core.Contracts.SourceSystems.Result;
 using MassTransit;
 
 namespace InvoiceAutoScan.Core.SourceSystems.Consumers
 {
     public class SourceSystemRequestConsumer : IConsumer<GetSourceSystem>, IConsumer<ListSourceSystems>
     {
-        private readonly ISourceSystemsDataRepository dataRepository;
+        private readonly IDataRepository<SourceSystem> dataRepository;
 
-        public SourceSystemRequestConsumer(ISourceSystemsDataRepository dataRepository)
+        public SourceSystemRequestConsumer(IDataRepository<SourceSystem> dataRepository)
         {
             this.dataRepository = dataRepository;
         }

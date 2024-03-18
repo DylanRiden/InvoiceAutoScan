@@ -15,6 +15,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\InvoiceAutoScan.Core.Contracts\InvoiceAutoScan.Core.Contracts.csproj" />
+    <ProjectReference Include="..\InvoiceAutoScan.FrontEnd.Abstractions\InvoiceAutoScan.FrontEnd.Abstractions.csproj" />
+    <ProjectReference Include="..\InvoiceAutoScan.FrontEnd.Infrastructure\InvoiceAutoScan.FrontEnd.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

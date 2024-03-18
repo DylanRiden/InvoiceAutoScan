@@ -1,0 +1,50 @@
+﻿@page "/invoices"
+@using Core.Contracts.TargetEntities;
+
+
+<PageTitle>InvoiceAutoScan - Discovered Invoices</PageTitle>
+
+<div style="width:100%; height:100%">
+    <FluentStack Style="width100%;height:100%" Orientation="Orientation.Vertical" VerticalAlignment="VerticalAlignment.Top" HorizontalAlignment="HorizontalAlignment.Center">
+        <FluentStack>
+
+            <h1>Discovered Invoices</h1>
+
+        </FluentStack>
+
+        <FluentStack Style="width:100%" HorizontalAlignment="HorizontalAlignment.Center" VerticalAlignment="VerticalAlignment.Center">
+            
+            <p role="status">Unpublished Invoices: <FluentBadge Appearance="Appearance.Neutral">123</FluentBadge></p>
+            
+        
+        </FluentStack>
+
+
+        <FluentDataGrid Id="anotherGrid" Style="width:100%" TGridItem="TargetEntityResult" Items="this.Data">
+
+            <PropertyColumn Title="Invoice Identifier" Property="@(e => "INV-001")" />
+            <PropertyColumn Title="Type" Property="@(e => "Invoice")" />
+            <PropertyColumn Title="Description" Property="@(e => "[Invoice-001] From Amazon")" />
+            <PropertyColumn Title="Certainty" Property="@(e => "95%")" />
+            <TemplateColumn>
+                
+                <FluentButton IconStart="new Icons.Filled.Size16.ChevronRight()">Publish</FluentButton>
+
+            </TemplateColumn>
+
+        </FluentDataGrid>
+
+
+    </FluentStack>
+</div>
+
+@code {
+    public IQueryable<TargetEntityResult> Data = new List<TargetEntityResult>()
+    {
+        new()
+        {
+            
+        }
+    }.AsQueryable();
+
+}

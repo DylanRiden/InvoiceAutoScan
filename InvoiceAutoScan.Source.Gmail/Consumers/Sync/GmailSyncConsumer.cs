@@ -2,7 +2,6 @@
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Gmail.v1;
 using InvoiceAutoScan.Common.Source.Options;
-using InvoiceAutoScan.Core.Contracts.SourceSystems;
 using InvoiceAutoScan.Source.Core.Contracts.Connections.SourceConnection;
 using InvoiceAutoScan.Source.Gmail.Contracts.Sync;
 using MassTransit;
@@ -20,6 +19,7 @@ using InvoiceAutoScan.Gmail.Common.DependencyInjection;
 using Google.Apis.Gmail.v1.Data;
 using InvoiceAutoScan.Common.Helpers;
 using InvoiceAutoScan.Source.Gmail.Contracts.Sync.ProcessBatchMessage;
+using InvoiceAutoScan.Core.Contracts.SourceSystems.Result;
 
 namespace InvoiceAutoScan.Source.Gmail.Consumers.Sync
 {

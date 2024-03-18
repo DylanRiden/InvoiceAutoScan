@@ -2,7 +2,7 @@
 
 namespace InvoiceAutoScan.Core.TargetSystems
 {
-    public class TargetSystem : BaseItemModel
+    public sealed class TargetSystem : BaseItemModel
     {
         public bool IsActive { get; set; }
     }

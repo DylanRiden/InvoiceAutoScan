@@ -1,7 +1,6 @@
 ﻿using InvoiceAutoScan.Common.Base.DataRepositories;
 using InvoiceAutoScan.Core.Data.Repositories;
 using InvoiceAutoScan.Core.SourceSystems.Consumers;
-using InvoiceAutoScan.Core.SourceSystems.Data;
 using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,8 +15,7 @@ namespace InvoiceAutoScan.Core.Infrastructure.Business.SourceSystems
     public static class SourceSystemServiceExtensions
     {
         internal static IServiceCollection AddSourceSystemServices(this IServiceCollection services, IConfiguration configuration, IBusRegistrationConfigurator busConfigurator)
-        {
-            services.AddScoped<ISourceSystemsDataRepository, SourceSystemsDataRepository>();
+        { 
             busConfigurator.AddSourceConsumers();
             return services;
         }

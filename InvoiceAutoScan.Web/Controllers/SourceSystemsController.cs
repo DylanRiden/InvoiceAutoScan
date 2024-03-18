@@ -1,4 +1,10 @@
-﻿using InvoiceAutoScan.Core.Contracts.SourceSystems;
+﻿using InvoiceAutoScan.Core.Contracts.Base;
+using InvoiceAutoScan.Core.Contracts.Base.Request;
+using InvoiceAutoScan.Core.Contracts.Base.Response;
+using InvoiceAutoScan.Core.Contracts.SourceSystems.Create;
+using InvoiceAutoScan.Core.Contracts.SourceSystems.Get;
+using InvoiceAutoScan.Core.Contracts.SourceSystems.Result;
+using InvoiceAutoScan.Core.SourceSystems;
 using MassTransit;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,12 +17,12 @@ namespace InvoiceAutoScan.Gateway.Controllers
     {
         private readonly IPublishEndpoint publishEndpoint;
         private readonly IRequestClient<CreateSourceSystem> createRequestClient;
-        private readonly IRequestClient<GetSourceSystem> getRequestClient;
+        private readonly IRequestClient<GenericGetRequest<SourceSystem>> getRequestClient;
         private readonly IRequestClient<ListSourceSystems> listRequestClient;
 
         public SourceSystemsController(IPublishEndpoint publishEndpoint,
             IRequestClient<CreateSourceSystem> createRequestClient, 
-            IRequestClient<GetSourceSystem> getRequestClient,
+            IRequestClient<GenericGetRequest<SourceSystem>> getRequestClient,
             IRequestClient<ListSourceSystems> listRequestClient)
         {
             this.publishEndpoint = publishEndpoint;
@@ -28,8 +34,21 @@ namespace InvoiceAutoScan.Gateway.Controllers
         [HttpGet("{sourceSystemId}")]
         public async Task<IActionResult> GetSourceSystem([FromRoute]Guid sourceSystemId)
         {
-            var response = await getRequestClient.GetResponse<GetSourceSystem, SourceSystemNotFound>(new { SourceSystemId = sourceSystemId });
-            return Ok(response.Message);
+            GenericGetRequest<SourceSystem> request = new() { Id = sourceSystemId };
+            var response = await getRequestClient.GetResponse<SourceSystem, IasNotFoundResponse>(request);
+            
+            object apiResponse;
+
+            if(response.Message is SourceSystem system)
+            {
+                 apiResponse = new IasResponse<SourceSystem>(system, true);
+            }
+            else
+            {
+                apiResponse = ((IasNotFoundResponse)response.Message);
+            }
+
+            return Ok(apiResponse);
         }
 
         [HttpGet()]

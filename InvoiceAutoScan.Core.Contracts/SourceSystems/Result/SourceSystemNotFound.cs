@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace InvoiceAutoScan.Core.Contracts.SourceSystems.Result
+{
+    public record SourceSystemNotFound
+    {
+        public Guid SourceId { get; init; }
+        public string ErrorMessage => $"Source system with id {SourceId} not found";
+    }
+}

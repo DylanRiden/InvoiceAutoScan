@@ -2,8 +2,10 @@
 
 namespace InvoiceAutoScan.Core.SourceSystems
 {
-    public class SourceSystem : BaseItemModel
+    public sealed class SourceSystem : BaseItemModel
     {
         public bool IsActive { get; set; }
+
+        
     }
 }

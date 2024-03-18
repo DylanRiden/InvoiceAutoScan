@@ -1,0 +1,18 @@
+﻿@implements IDialogContentComponent<CreateSourceSystem>;
+@using InvoiceAutoScan.Core.Contracts.SourceSystems.Create;
+
+
+
+<FluentDialogBody>
+    <FluentTextField @bind-Value="@Content.DisplayName" Label="Source Name"></FluentTextField>
+    <FluentSelect TOption="string" @bind-Value="@Content.SourceSystemType" Label="Source Type">
+        <FluentOption Value="Gmail">Gmail</FluentOption>
+    </FluentSelect>
+</FluentDialogBody>
+
+
+
+@code {
+    [Parameter]
+    public CreateSourceSystem Content { get; set; } = default;
+}

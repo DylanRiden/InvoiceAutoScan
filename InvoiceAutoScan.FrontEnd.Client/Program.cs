@@ -1,16 +1,15 @@
+using InvoiceAutoScan.FrontEnd.ApiClient.Infrastructure;
 using InvoiceAutoScan.FrontEnd.Client;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.FluentUI.AspNetCore.Components;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
+
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
-
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+builder.Services.AddIasApiSerivces(builder.Configuration);
 builder.Services.AddFluentUIComponents();
-
-Console.WriteLine(builder.Configuration.GetDebugView());
 
 await builder.Build().RunAsync();

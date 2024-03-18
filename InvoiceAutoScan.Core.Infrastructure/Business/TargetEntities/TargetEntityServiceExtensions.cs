@@ -1,6 +1,5 @@
 ﻿using InvoiceAutoScan.Core.Data.Repositories;
 using InvoiceAutoScan.Core.TargetEntities.Consumers;
-using InvoiceAutoScan.Core.TargetEntities.Data;
 using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,14 +16,7 @@ namespace InvoiceAutoScan.Core.Infrastructure.Business.TargetEntities
     {
         public static IServiceCollection AddTargetEntityServices(this IServiceCollection services, IConfiguration configuration, IBusRegistrationConfigurator configurator)
         {
-            services.AddTargetEntityPersistenceServices();
             configurator.AddTargetEntityConsumers();
-            return services;
-        }
-
-        private static IServiceCollection AddTargetEntityPersistenceServices(this IServiceCollection services)
-        {
-            services.AddScoped<ITargetEntityDataRepository, TargetEntitiesDataRepository>();
             return services;
         }
 

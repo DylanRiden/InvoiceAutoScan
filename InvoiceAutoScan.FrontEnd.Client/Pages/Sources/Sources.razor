@@ -1,0 +1,109 @@
+﻿@page "/sources"
+@using Core.Contracts.SourceSystems;
+@using InvoiceAutoScan.Core.Contracts.Base
+@using InvoiceAutoScan.Core.Contracts.SourceSystems.Create
+@using InvoiceAutoScan.Core.Contracts.SourceSystems.Get;
+@using InvoiceAutoScan.Core.Contracts.SourceSystems.Result;
+@using InvoiceAutoScan.FrontEnd.Abstractions
+@using InvoiceAutoScan.FrontEnd.Client.Pages.Sources.AddOrUpdateSource
+@inject ISourceSystemsService sourceSystemsService;
+@inject IDialogService dialogService;
+
+
+<PageTitle>InvoiceAutoScan - Sources</PageTitle>
+
+<div style="width:100%; height:100%">
+    <FluentStack Style="width100%;height:100%" Orientation="Orientation.Vertical" VerticalAlignment="VerticalAlignment.Top" HorizontalAlignment="HorizontalAlignment.Center">
+
+        <FluentStack>
+
+            <h1>Sources</h1>
+            
+        </FluentStack>
+
+        <FluentStack Style="width:100%" HorizontalAlignment="HorizontalAlignment.Center" VerticalAlignment="VerticalAlignment.Center">
+            
+            <p role="status">Sources Used: <FluentBadge Appearance="Appearance.Neutral">@totalSources</FluentBadge></p>
+            
+            <FluentSpacer />
+
+            <FluentButton IconEnd="new Icons.Regular.Size20.Add()" OnClick="async () => await this.OnAdd()" Style="font-size:20px" Appearance="Appearance.Accent">
+                Add Source
+            </FluentButton>
+        
+        </FluentStack>
+
+
+        <FluentDataGrid Id="somegrid" Style="width:100%" TGridItem="SourceSystemResult" Items="this.data?.Data?.AsQueryable()">
+
+            <PropertyColumn Title="Source Name" Align="Align.Start" Property="@(e => e.DisplayName)" />
+            
+                <TemplateColumn Title="Source Type" Align="Align.Center" >
+                    @context.SourceSystemType
+                <FluentIcon Value="new Icons.Filled.Size20.Calendar()" />
+            </TemplateColumn>
+
+            <PropertyColumn Title="Created Date" Align="Align.Center" Property="@(e => e.CreatedDate)" />
+            <PropertyColumn Title="Last Sync" Align="Align.Center" Property="@(e => e.ModifiedDate)" />
+
+            <TemplateColumn Align="Align.End">
+                <FluentIcon  Value="new Icons.Regular.Size20.Edit()" OnClick="async e => await OnEdit(context)" />
+                <FluentIcon Value="new Icons.Regular.Size20.Delete()" OnClick="async e => await OnEdit(context)" />
+            </TemplateColumn>
+
+        </FluentDataGrid>
+
+
+    </FluentStack>
+</div>
+
+
+@code {
+    private int totalSources
+    {
+        get
+        {
+            if(this.data is not null)
+                return this.data.Count;
+            else
+                return default;
+        }
+    }
+
+    private IDialogReference? _createDialog;
+
+    private IasListResponse<SourceSystemResult> data = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await this.Refresh();
+        await base.OnInitializedAsync();
+    }
+
+    private async Task Refresh()
+    {
+        this.data = (await this.sourceSystemsService.List(q => q));
+    }
+
+    private async Task OnEdit(SourceSystemResult entity)
+    {
+        Console.WriteLine(entity.DisplayName + " - MODIFIFED");
+    }
+
+    private async Task OnAdd()
+    {
+        await this.dialogService.ShowPanelAsync<AddSourcePanel>(new CreateSourceSystem(), new DialogParameters<CreateSourceSystem>()
+        {
+            Content = new(),
+            Alignment = HorizontalAlignment.Right,
+            Title = $"Add A Source",
+            PrimaryAction = "Next",
+            SecondaryAction = "Cancel",
+        });
+
+        await _createDialog.Result;
+
+        await this.Refresh();
+    }
+
+}

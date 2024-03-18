@@ -1,5 +1,5 @@
-﻿using InvoiceAutoScan.Core.Contracts.TargetEntities;
-using InvoiceAutoScan.Core.TargetEntities.Data;
+﻿using InvoiceAutoScan.Common.Base.DataRepositories;
+using InvoiceAutoScan.Core.Contracts.TargetEntities;
 using MassTransit;
 using Microsoft.Extensions.Logging;
 using System;
@@ -13,10 +13,10 @@ namespace InvoiceAutoScan.Core.TargetEntities.Consumers
     public sealed class CreateTargetEntityConsumer : IConsumer<CreateTargetEntity>
     {
         private readonly ILogger<CreateTargetEntityConsumer> logger;
-        private readonly ITargetEntityDataRepository targetEntityDataRepository;
+        private readonly IDataRepository<TargetEntity> targetEntityDataRepository;
 
         public CreateTargetEntityConsumer(ILogger<CreateTargetEntityConsumer> logger,
-            ITargetEntityDataRepository targetEntityDataRepository)
+            IDataRepository<TargetEntity> targetEntityDataRepository)
         {
             this.logger = logger;
             this.targetEntityDataRepository = targetEntityDataRepository;

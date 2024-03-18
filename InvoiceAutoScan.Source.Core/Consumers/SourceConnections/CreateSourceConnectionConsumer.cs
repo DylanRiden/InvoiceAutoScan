@@ -1,5 +1,6 @@
 ﻿using InvoiceAutoScan.Common.Abstractions.ConnectionSettings;
-using InvoiceAutoScan.Core.Contracts.SourceSystems;
+using InvoiceAutoScan.Core.Contracts.SourceSystems.Get;
+using InvoiceAutoScan.Core.Contracts.SourceSystems.Result;
 using InvoiceAutoScan.Source.Core.Contracts.Connections.ConnectionSettings;
 using InvoiceAutoScan.Source.Core.Contracts.Connections.SourceConnection;
 using InvoiceAutoScan.Source.Core.Data.Connections;

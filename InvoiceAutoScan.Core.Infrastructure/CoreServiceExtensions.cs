@@ -1,4 +1,5 @@
-﻿using InvoiceAutoScan.Core.Infrastructure.Business;
+﻿using InvoiceAutoScan.Core.Generic.Consumers;
+using InvoiceAutoScan.Core.Infrastructure.Business;
 using InvoiceAutoScan.Core.Infrastructure.Business.SourceSystems;
 using InvoiceAutoScan.Core.Infrastructure.Data;
 using InvoiceAutoScan.Core.Infrastructure.Messaging;
@@ -18,6 +19,7 @@ namespace InvoiceAutoScan.Core.Infrastructure
 
             services.AddMassTransit(messagingConfigurator =>
             {
+
                 services.AddCoreBusinessServices(configuration, messagingConfigurator);
                 services.AddSourceConnectionServices(configuration, messagingConfigurator);
 

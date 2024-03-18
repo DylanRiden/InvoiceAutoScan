@@ -1,0 +1,25 @@
+{
+    "configurations": [
+        
+        {
+            "name": "API Local Development",
+            "type": "dotnet-launch-settings",
+            "workingDir": "C:\\Dev\\UDM\\Wholesale\\InvoiceAutoScan\\InvoiceAutoScan.Web",
+            "allowParallelRun": true,
+            "solutionPath": "C:\\Dev\\UDM\\Wholesale\\InvoiceAutoScan\\InvoiceAutoScan.sln",
+            "projectPath": "C:\\Dev\\UDM\\Wholesale\\InvoiceAutoScan\\InvoiceAutoScan.Web\\InvoiceAutoScan.Gateway.csproj",
+            "targetFramework": "net8.0",
+            "profileName": "https"
+        },
+        {
+            "name": "Front-End Local Development",
+            "type": "dotnet-launch-settings",
+            "workingDir": "C:\\Dev\\UDM\\Wholesale\\InvoiceAutoScan",
+            "allowParallelRun": true,
+            "solutionPath": "C:\\Dev\\UDM\\Wholesale\\InvoiceAutoScan\\InvoiceAutoScan.sln",
+            "projectPath": "C:\\Dev\\UDM\\Wholesale\\InvoiceAutoScan\\InvoiceAutoScan.FrontEnd.Client\\InvoiceAutoScan.FrontEnd.Client.csproj",
+            "targetFramework": "net8.0",
+            "profileName": "LocalDevelopment"
+        }
+    ]
+}
