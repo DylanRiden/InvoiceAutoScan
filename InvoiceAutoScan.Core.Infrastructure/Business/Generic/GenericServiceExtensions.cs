@@ -12,27 +12,43 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InvoiceAutoScan.Core.Infrastructure.Business.Generic
+namespace InvoiceAutoScan.Core.Infrastructure.Business.Generic;
+
+public static class GenericServiceExtensions
 {
-    public static class GenericServiceExtensions
+    public static IServiceCollection AddGenericGetConsumers(this IServiceCollection services, IConfiguration configuration, IBusRegistrationConfigurator configurator)
     {
-        public static IServiceCollection AddGenericGetConsumers(this IServiceCollection services, IConfiguration configuration, IBusRegistrationConfigurator configurator)
-        {
-            IEnumerable<Assembly> assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(e => e.FullName.Contains(".Core"));
+        IEnumerable<Assembly> assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(e => e.FullName!.Contains(".Core"));
 
-            IEnumerable<Type> modelTypes = assemblies.SelectMany(e => e.GetExportedTypes())
-                .Where(e => e.IsAssignableTo(typeof(BaseModel)) && (e.GetType() != typeof(BaseModel)));
+        IEnumerable<Type> entityTypes = assemblies.SelectMany(e => e.GetExportedTypes())
+            .Where(e => e.IsAssignableTo(typeof(BaseModel)) && e.GetType() != typeof(BaseModel));
         
-            foreach(var modelType in modelTypes)
-            {
-                Type genericType = typeof(GenericGetConsumer<>);
-
-                Type specificType = genericType.MakeGenericType(modelType);
-
-                configurator.AddConsumer(specificType);
-            }
-
-            return services;
+        foreach(var entityType in entityTypes)
+        {
+            Type getType = CreateGenericGetConsumer(entityType);
+            Type listType = CreateGenericListConsumer(entityType);
+            configurator.AddConsumer(getType);
+            configurator.AddConsumer(listType);
         }
+
+        return services;
+    }
+
+    private static Type CreateGenericGetConsumer(Type entityType)
+    {
+        Type genericType = typeof(GenericGetConsumer<>);
+
+        Type specificType = genericType.MakeGenericType(entityType);
+
+        return specificType;
+    }
+
+    private static Type CreateGenericListConsumer(Type entityType)
+    {
+        Type genericType = typeof(GenericGetListConsumer<>);
+
+        Type specificType = genericType.MakeGenericType(entityType);
+
+        return specificType;
     }
 }
